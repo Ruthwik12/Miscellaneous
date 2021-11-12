@@ -1,0 +1,26 @@
+def lngsub(st,k):
+    l=[]
+    s=''
+    j=0
+    maxlen=0
+    for letter in st:
+        if letter not in s and j<k:
+            s+=letter
+            j+=1
+        elif letter in s and j<=k:
+            s+=letter
+        elif letter not in s and j==k:
+            r=list(s)
+            r.pop(0)
+            s=''.join(r)
+            s+=letter
+            leng = len(s)
+            maxlen = max(maxlen,leng)
+            j = len(set(s))
+    if(j<k):
+        maxlen = max(maxlen, len(st))
+    print(maxlen)
+            
+lngsub("cbbebi",3)
+        
+        
