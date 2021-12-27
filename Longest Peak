@@ -1,0 +1,37 @@
+def longestPeak(array):
+    # Write your code here.
+	inc = False
+	dec = False
+	maxlen = 0
+	currlen = 1
+	if(len(array)==0):
+		return 0
+	for i in range(len(array)-1):
+		if((dec == False) and (array[i+1]>array[i])):
+			currlen += 1
+			inc = True
+		elif((inc and array[i+1]<array[i]) or (dec and array[i+1]<array[i])):
+			dec = True
+			inc = False
+			currlen += 1
+			
+		elif(array[i+1]==array[i]):
+			if((currlen > maxlen) and (inc == False and dec == True) ):
+			    maxlen = currlen
+			inc = False
+			dec = False
+			currlen = 1
+			
+		else:
+			if((currlen >= maxlen) and (inc == False and dec == True)):
+				maxlen = currlen
+				currlen = 2
+				inc = True
+				dec = False
+	
+	if((currlen > maxlen) and (inc == False and dec == True)):
+		maxlen = currlen
+	return maxlen
+			
+			
+    pass
